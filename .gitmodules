@@ -1,0 +1,15 @@
+[submodule "src/datadog-firehose-nozzle/src/github.com/gogo/protobuf"]
+	path = src/datadog-firehose-nozzle/src/github.com/gogo/protobuf
+	url = https://github.com/gogo/protobuf.git
+[submodule "src/datadog-firehose-nozzle/src/github.com/gorilla/websocket"]
+	path = src/datadog-firehose-nozzle/src/github.com/gorilla/websocket
+	url = https://github.com/gorilla/websocket.git
+[submodule "src/datadog-firehose-nozzle/src/github.com/cloudfoundry/noaa"]
+	path = src/datadog-firehose-nozzle/src/github.com/cloudfoundry/noaa
+	url = https://github.com/cloudfoundry/noaa.git
+[submodule "src/datadog-firehose-nozzle/src/github.com/cloudfoundry-incubator/datadog-firehose-nozzle"]
+	path = src/datadog-firehose-nozzle/src/github.com/cloudfoundry-incubator/datadog-firehose-nozzle
+	url = https://github.com/cloudfoundry-incubator/datadog-firehose-nozzle.git
+[submodule "src/datadog-firehose-nozzle/src/github.com/cloudfoundry-incubator/uaago"]
+	path = src/datadog-firehose-nozzle/src/github.com/cloudfoundry-incubator/uaago
+	url = https://github.com/cloudfoundry-incubator/uaago.git

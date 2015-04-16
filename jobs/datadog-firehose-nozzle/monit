@@ -1,0 +1,5 @@
+check process datadog-firehose-nozzle
+  with pidfile /var/vcap/sys/run/datadog-firehose-nozzle/datadog-firehose-nozzle.pid
+  start program "/var/vcap/jobs/datadog-firehose-nozzle/bin/datadog-firehose-nozzle-ctl start"
+  stop program "/var/vcap/jobs/datadog-firehose-nozzle/bin/datadog-firehose-nozzle-ctl stop"
+  group vcap

@@ -1,0 +1,34 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/datadog-firehose-nozzle
+LOG_DIR=/var/vcap/sys/log/datadog-firehose-nozzle
+PIDFILE=$RUN_DIR/datadog-firehose-nozzle.pid
+
+case $1 in
+
+start)
+
+mkdir -p $RUN_DIR
+mkdir -p $LOG_DIR
+
+chown -R vcap:vcap $LOG_DIR
+
+echo $$ > $PIDFILE
+
+exec chpst -u vcap:vcap /var/vcap/packages/datadog-firehose-nozzle/datadog-firehose-nozzle \
+--config /var/vcap/jobs/datadog-firehose-nozzle/config/datadog-firehose-nozzle.json \
+>>$LOG_DIR/datadog-firehose-nozzle.stdout.log \
+2>>$LOG_DIR/datadog-firehose-nozzle.stderr.log
+;;
+
+stop)
+kill -9 `cat $PIDFILE`
+rm -f $PIDFILE
+;;
+
+*)
+echo "Usage: datadog-firehose-nozzle {start|stop}"
+
+;;
+
+esac

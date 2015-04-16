@@ -1,0 +1,6 @@
+---
+final_name: datadog-firehose-nozzle
+blobstore:
+  provider: s3
+  options:
+    bucket_name: walnut-cf-datadog-nozzle-blobstore

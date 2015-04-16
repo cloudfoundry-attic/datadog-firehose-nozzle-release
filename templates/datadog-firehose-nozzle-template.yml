@@ -1,0 +1,56 @@
+---
+meta: (( merge ))
+
+name: (( merge ))
+director_uuid: (( merge ))
+releases:
+  - name: datadog-firehose-nozzle
+    version: latest
+
+compilation:
+  workers: (( merge ))
+  network: datadog-firehose-nozzle-net
+  reuse_compilation_vms: true
+  cloud_properties: (( merge ))
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-100000
+  update_watch_time: 30000-100000
+  max_in_flight: 1
+  max_errors: 1
+
+networks:
+- name: datadog-firehose-nozzle-net
+  subnets: (( merge ))
+
+resource_pools:
+- name: datadog-firehose-nozzle
+  network: datadog-firehose-nozzle-net
+  stemcell: (( meta.stemcell ))
+  size: (( merge ))
+  cloud_properties: (( merge ))
+
+jobs:
+- name: datadog-firehose-nozzle
+  memory_mb: 2048
+  templates:
+    - {name: datadog-firehose-nozzle, release: datadog-firehose-nozzle}
+  instances: (( merge ))
+  resource_pool: datadog-firehose-nozzle
+  networks: (( merge ))
+
+properties:
+  loggregator:
+    traffic_controller_url: (( merge ))
+  datadog:
+    api_url: (( merge ))
+    api_key: (( merge ))
+    flush_duration_seconds: (( merge ))
+    metric_prefix: (( merge ))
+  uaa:
+    url: (( merge ))
+    username: (( merge ))
+    password: (( merge ))
+  nozzle:
+    insecure_ssl_skip_verify: (( merge ))

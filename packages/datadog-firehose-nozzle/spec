@@ -1,0 +1,8 @@
+---
+name: datadog-firehose-nozzle
+
+dependencies:
+- golang1.4
+
+files:
+- datadog-firehose-nozzle/**/*

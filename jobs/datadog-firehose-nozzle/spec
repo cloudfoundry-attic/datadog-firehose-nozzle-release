@@ -1,0 +1,31 @@
+---
+name: datadog-firehose-nozzle
+templates:
+  datadog-firehose-nozzle-ctl.erb: bin/datadog-firehose-nozzle-ctl
+  datadog-firehose-nozzle.json.erb: config/datadog-firehose-nozzle.json
+
+packages:
+- datadog-firehose-nozzle
+
+properties:
+  loggregator.traffic_controller_url:
+    description: "Traffic controller URL"
+  datadog.api_url:
+    description: "The REST API Endpoint for datadog"
+    default: "https://app.datadoghq.com/api/v1/series"
+  datadog.api_key:
+    description: "The datadog API key to use while submitting requests"
+  datadog.flush_duration_seconds:
+    description: "The duration in seconds between flushes to datadog"
+    default: 15
+  datadog.metric_prefix:
+    description: "Text which will be prepended to each metric name submitted to datadog"
+    default: "datadog.nozzle."
+  uaa.url:
+    description: "URL for the UAA server"
+  uaa.username:
+    description: "The user who has access to the loggregator firehose"
+  uaa.password:
+    description: "The password for the user"
+  nozzle.insecure_ssl_skip_verify:
+    description: "Skip verifying SSL certificate"

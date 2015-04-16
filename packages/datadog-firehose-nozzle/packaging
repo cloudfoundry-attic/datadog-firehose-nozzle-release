@@ -1,0 +1,11 @@
+set -e -x
+
+export GOROOT=$(readlink -nf /var/vcap/packages/golang1.4)
+export PATH=$GOROOT/bin:$PATH
+
+cd datadog-firehose-nozzle
+
+export GOPATH=$PWD
+
+go install github.com/cloudfoundry-incubator/datadog-firehose-nozzle
+cp -a $PWD/bin/datadog-firehose-nozzle ${BOSH_INSTALL_TARGET}

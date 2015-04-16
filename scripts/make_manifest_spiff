@@ -1,0 +1,42 @@
+#!/bin/bash -e
+
+DEPLOYMENT=$1
+
+if [[ -z $DEPLOYMENT ]]; then
+    echo "Usage: ./scripts/make_manifest <path_to_deployment_manifest_stub>"
+    exit 1
+fi
+
+if [[ ! -f $DEPLOYMENT ]]; then
+    echo "Cannot find deployment manifest $DEPLOYMENT. Quitting."
+    exit 1
+fi
+
+mkdir -p tmp
+
+MANIFEST_FILE_TMP=/tmp/manifest_stub_tmp.yml
+
+BOSH_RELEASES_DIR=${BOSH_RELEASES_DIR:-~/workspace}
+RELEASE_DIR=${RELEASE_DIR:-$BOSH_RELEASES_DIR/datadog-firehose-nozzle-release}
+
+DEPLOYMENT_FILE=`basename $DEPLOYMENT`
+DEPLOYMENT_ENV=`basename $(dirname $DEPLOYMENT)`
+MANIFEST_FILE=tmp/${DEPLOYMENT_FILE/stub/$DEPLOYMENT_ENV}
+MANIFEST_FILE_TMP=tmp/${DEPLOYMENT_FILE/stub/$DEPLOYMENT_ENV}_tmp
+
+if [[ ! -d $RELEASE_DIR ]]; then
+  echo "Cannot find release at RELEASE_DIR; override with \$RELEASE_DIR variable"
+  exit 1
+fi
+
+cp $DEPLOYMENT $MANIFEST_FILE_TMP
+DIRECTOR_UUID=$(bosh status | grep UUID | awk '{print $2}')
+echo "Director UUID: $DIRECTOR_UUID"
+perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" $MANIFEST_FILE_TMP
+
+spiff merge $RELEASE_DIR/templates/datadog-firehose-nozzle-template.yml $MANIFEST_FILE_TMP > $MANIFEST_FILE
+
+rm $MANIFEST_FILE_TMP
+
+echo "Setting manifest file to `pwd`/$MANIFEST_FILE..."
+bosh deployment $MANIFEST_FILE
