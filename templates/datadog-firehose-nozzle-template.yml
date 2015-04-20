@@ -54,3 +54,4 @@ properties:
     password: (( merge ))
   nozzle:
     insecure_ssl_skip_verify: (( merge ))
+    subscription_id: (( merge ))
