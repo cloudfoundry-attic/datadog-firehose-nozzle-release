@@ -48,6 +48,7 @@ properties:
     api_key: (( merge ))
     flush_duration_seconds: (( merge ))
     metric_prefix: (( merge ))
+    deployment: (( merge ))
   uaa:
     url: (( merge ))
     username: (( merge ))

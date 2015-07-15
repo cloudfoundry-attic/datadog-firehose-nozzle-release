@@ -21,6 +21,8 @@ properties:
   datadog.metric_prefix:
     description: "Text which will be prepended to each metric name submitted to datadog"
     default: "datadog.nozzle."
+  datadog.deployment:
+    description: "Name of deployment (added as tag on all outgoing metrics)"
   uaa.url:
     description: "URL for the UAA server"
   uaa.username:
