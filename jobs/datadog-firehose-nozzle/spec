@@ -33,3 +33,6 @@ properties:
     description: "The subscription id to be used for the firehose"
   nozzle.deployment:
     description: "Name of deployment (added as tag on all outgoing metrics)"
+  nozzle.idle_timeout_seconds:
+    description: "Number of seconds to wait before timing out the read to the firehose, if there are no messages"
+    default: 60
