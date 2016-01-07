@@ -28,7 +28,6 @@ resource_pools:
 - name: datadog-firehose-nozzle
   network: datadog-firehose-nozzle-net
   stemcell: (( meta.stemcell ))
-  size: (( merge ))
   cloud_properties: (( merge ))
 
 jobs:
