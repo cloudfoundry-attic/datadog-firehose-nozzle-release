@@ -52,6 +52,7 @@ properties:
     username: (( merge ))
     password: (( merge ))
   nozzle:
+    disable_access_control: (( merge || nil ))
     insecure_ssl_skip_verify: (( merge ))
     subscription_id: (( merge ))
     deployment: (( merge ))

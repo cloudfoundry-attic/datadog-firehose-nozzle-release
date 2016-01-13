@@ -36,3 +36,6 @@ properties:
   nozzle.idle_timeout_seconds:
     description: "Number of seconds to wait before timing out the read to the firehose, if there are no messages"
     default: 60
+  nozzle.disable_access_control:
+    description: "Datadog Nozzle bypasses authentication with the UAA"
+    default: false
