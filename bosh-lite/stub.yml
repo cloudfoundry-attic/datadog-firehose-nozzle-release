@@ -1,0 +1,60 @@
+---
+meta:
+  environment: datadog-nozzle-warden
+  stemcell:
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    version: latest
+
+name: datadog-firehose-nozzle
+director_uuid: PLACEHOLDER-DIRECTOR-UUID
+
+compilation:
+  workers: 1
+  reuse_compilation_vms: true
+  cloud_properties: {}
+
+networks:
+- name: datadog-firehose-nozzle-net
+  subnets:
+    - range: 10.244.99.0/30
+      reserved:
+      - 10.244.99.1
+      static: []
+      cloud_properties: {}
+    - range: 10.244.99.4/30
+      reserved:
+      - 10.244.99.5
+      static: []
+      cloud_properties: {}
+    - range: 10.244.99.8/30
+      reserved:
+      - 10.244.99.9
+      static: []
+      cloud_properties: {}
+
+jobs:
+- name: datadog-firehose-nozzle
+  instances: 1
+  networks:
+  - name: datadog-firehose-nozzle-net
+
+resource_pools:
+- name: datadog-firehose-nozzle
+  cloud_properties: {}
+
+properties:
+  loggregator:
+    traffic_controller_url: wss://doppler.bosh-lite.com:4443
+  datadog:
+    api_url: https://app.datadoghq.com/api/v1/series
+    api_key: API_KEY
+    flush_duration_seconds: 15
+    metric_prefix: bosh.lite.datadog.nozzle.
+  uaa:
+    url: https://uaa.bosh-lite.com
+    username: datadog-firehose-nozzle
+    password: datadog-password
+  nozzle:
+    insecure_ssl_skip_verify: true
+    subscription_id: datadog-nozzle
+    deployment: (( meta.environment ))
