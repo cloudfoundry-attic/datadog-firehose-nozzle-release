@@ -30,4 +30,6 @@ builds:
     version: '14'
   efaee368-beef-49fa-9bfb-ca65765fa128:
     version: '15'
+  8ce32783-4165-4363-91c4-b33d9f78a952:
+    version: '16'
 format-version: '2'
