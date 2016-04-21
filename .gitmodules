@@ -19,3 +19,6 @@
 [submodule "src/datadog-firehose-nozzle/src/github.com/pivotal-golang/localip"]
 	path = src/datadog-firehose-nozzle/src/github.com/pivotal-golang/localip
 	url = https://github.com/pivotal-golang/localip.git
+[submodule "src/datadog-firehose-nozzle/src/github.com/cloudfoundry/gosteno"]
+	path = src/datadog-firehose-nozzle/src/github.com/cloudfoundry/gosteno
+	url = https://github.com/cloudfoundry/gosteno

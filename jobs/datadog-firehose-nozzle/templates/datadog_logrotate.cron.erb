@@ -1,0 +1,3 @@
+*/<%= p("datadog.logrotate.freq_min") %> * * * * test -x /usr/sbin/logrotate && /usr/sbin/logrotate /var/vcap/jobs/datadog-firehose-nozzle/config/logrotate.conf >>/var/vcap/sys/log/datadog-firehose-nozzle/datadog_logrotate_cron.log 2>&1 
+
+

@@ -13,17 +13,22 @@ mkdir -p $LOG_DIR
 
 chown -R vcap:vcap $LOG_DIR
 
-echo $$ > $PIDFILE
+(crontab -l | sed /datadog.*logrotate/d; cat /var/vcap/jobs/datadog-firehose-nozzle/config/datadog_logrotate.cron) | sed /^$/d | crontab
 
-exec chpst -u vcap:vcap /var/vcap/packages/datadog-firehose-nozzle/datadog-firehose-nozzle \
---config /var/vcap/jobs/datadog-firehose-nozzle/config/datadog-firehose-nozzle.json \
->>$LOG_DIR/datadog-firehose-nozzle.stdout.log \
-2>>$LOG_DIR/datadog-firehose-nozzle.stderr.log
+exec >>$LOG_DIR/datadog-firehose-nozzle.stdout.log \
+    2>>$LOG_DIR/datadog-firehose-nozzle.stderr.log
+
+chpst -u vcap:vcap /var/vcap/packages/datadog-firehose-nozzle/datadog-firehose-nozzle \
+--config /var/vcap/jobs/datadog-firehose-nozzle/config/datadog-firehose-nozzle.json &
+
+echo $! > $PIDFILE
+
 ;;
 
 stop)
 kill -9 `cat $PIDFILE`
 rm -f $PIDFILE
+
 ;;
 
 *)

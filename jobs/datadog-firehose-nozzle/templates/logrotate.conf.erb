@@ -1,0 +1,9 @@
+/var/vcap/sys/log/datadog-firehose-nozzle/*.log {
+  missingok
+  rotate <%= p("datadog.logrotate.rotate") %>
+  compress
+  delaycompress
+  copytruncate
+  size=<%= p("datadog.logrotate.size") %>
+}
+

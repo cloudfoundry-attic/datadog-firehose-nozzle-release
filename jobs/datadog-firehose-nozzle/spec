@@ -3,6 +3,8 @@ name: datadog-firehose-nozzle
 templates:
   datadog-firehose-nozzle-ctl.erb: bin/datadog-firehose-nozzle-ctl
   datadog-firehose-nozzle.json.erb: config/datadog-firehose-nozzle.json
+  datadog_logrotate.cron.erb: config/datadog_logrotate.cron
+  logrotate.conf.erb: config/logrotate.conf
 
 packages:
 - datadog-firehose-nozzle
@@ -21,6 +23,16 @@ properties:
   datadog.metric_prefix:
     description: "Text which will be prepended to each metric name submitted to datadog"
     default: "datadog.nozzle."
+  datadog.logrotate.freq_min:
+    description: "The frequency in minutes which logrotate will rotate VM logs"
+    default: 5
+  datadog.logrotate.rotate:
+    description: "The number of files that logrotate will keep around on the VM"
+    default: 3
+  datadog.logrotate.size:
+    description: "The size at which logrotate will decide to rotate the log file"
+    default: 50M
+
   uaa.url:
     description: "URL for the UAA server"
   uaa.username:
