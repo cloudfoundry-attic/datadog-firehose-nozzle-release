@@ -44,4 +44,6 @@ builds:
     version: '21'
   66249870-2ae7-4f65-81b9-5fd2e08726b1:
     version: '22'
+  2da723ad-95b1-4354-b6a3-e9e19e6a5765:
+    version: '23'
 format-version: '2'
