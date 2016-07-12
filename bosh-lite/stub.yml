@@ -6,7 +6,7 @@ meta:
     version: latest
 
 name: datadog-firehose-nozzle
-director_uuid: PLACEHOLDER-DIRECTOR-UUID
+director_uuid: <%= `bosh status --uuid` %>
 
 compilation:
   workers: 1
