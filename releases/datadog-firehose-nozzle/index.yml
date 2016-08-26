@@ -80,4 +80,6 @@ builds:
     version: '39'
   f158b763-a8f8-4235-a60c-e9f0761b057d:
     version: '40'
+  3d3a86c8-def7-4004-9136-6b06583bacca:
+    version: '41'
 format-version: '2'
