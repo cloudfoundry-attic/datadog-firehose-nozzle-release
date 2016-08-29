@@ -49,8 +49,8 @@ properties:
     metric_prefix: (( merge ))
   uaa:
     url: (( merge ))
-    username: (( merge ))
-    password: (( merge ))
+    client: (( merge ))
+    client_secret: (( merge ))
   nozzle:
     disable_access_control: (( merge || nil ))
     insecure_ssl_skip_verify: (( merge ))

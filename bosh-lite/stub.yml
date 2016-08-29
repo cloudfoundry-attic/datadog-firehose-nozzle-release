@@ -52,8 +52,8 @@ properties:
     metric_prefix: bosh.lite.datadog.nozzle.
   uaa:
     url: https://uaa.bosh-lite.com
-    username: datadog-firehose-nozzle
-    password: datadog-password
+    client: datadog-firehose-nozzle
+    client_secret: datadog-password
   nozzle:
     insecure_ssl_skip_verify: true
     subscription_id: datadog-nozzle
