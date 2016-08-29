@@ -32,6 +32,9 @@ properties:
   datadog.logrotate.size:
     description: "The size at which logrotate will decide to rotate the log file"
     default: 50M
+  datadog.timeout_seconds:
+    description: "The number of seconds to set the timeout for writes to Datadog"
+    default: 5
 
   uaa.url:
     description: "URL for the UAA server"
