@@ -1,17 +1,21 @@
-{
-    "UAAURL": "<%=p("uaa.url")%>",
-    "Client": "<%=p("uaa.client")%>",
-    "ClientSecret": "<%=p("uaa.client_secret")%>",
-    "TrafficControllerURL": "<%=p("loggregator.traffic_controller_url")%>",
-    "FirehoseSubscriptionID": "<%=p("nozzle.subscription_id")%>",
-    "DataDogURL": "<%=p("datadog.api_url")%>",
-    "DataDogAPIKey": "<%=p("datadog.api_key")%>",
-    "DataDogTimeoutSeconds": <%=p("datadog.timeout_seconds")%>,
-    "FlushDurationSeconds": <%=p("datadog.flush_duration_seconds")%>,
-    "InsecureSSLSkipVerify": <%=p("nozzle.insecure_ssl_skip_verify")%>,
-    "MetricPrefix": "<%=p("datadog.metric_prefix")%>",
-    "Deployment": "<%=p("nozzle.deployment")%>",
-    "IdleTimeoutSeconds": <%=p("nozzle.idle_timeout_seconds")%>,
-    "DisableAccessControl": <%=p("nozzle.disable_access_control")%>,
-    "DeploymentFilter": <%=p("deployment_filter")%>
-}
+<%=
+
+JSON.pretty_generate(
+    "UAAURL" => p("uaa.url"),
+    "Client" => p("uaa.client"),
+    "ClientSecret" => p("uaa.client_secret"),
+    "TrafficControllerURL" => p("loggregator.traffic_controller_url"),
+    "FirehoseSubscriptionID" => p("nozzle.subscription_id"),
+    "DataDogURL" => p("datadog.api_url"),
+    "DataDogAPIKey" => p("datadog.api_key"),
+    "DataDogTimeoutSeconds" => p("datadog.timeout_seconds"),
+    "FlushDurationSeconds" => p("datadog.flush_duration_seconds"),
+    "InsecureSSLSkipVerify" => p("nozzle.insecure_ssl_skip_verify"),
+    "MetricPrefix" => p("datadog.metric_prefix"),
+    "Deployment" => p("nozzle.deployment"),
+    "IdleTimeoutSeconds" => p("nozzle.idle_timeout_seconds"),
+    "DisableAccessControl" => p("nozzle.disable_access_control"),
+    "DeploymentFilter" => p("deployment_filter"),
+)
+
+%>
