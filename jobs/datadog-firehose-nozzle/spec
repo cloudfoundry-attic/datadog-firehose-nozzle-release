@@ -54,3 +54,7 @@ properties:
   nozzle.disable_access_control:
     description: "Datadog Nozzle bypasses authentication with the UAA"
     default: false
+
+  deployment_filter:
+    description: "If set, this will filter out envelopes that do not match the deployment name"
+    default: ""
