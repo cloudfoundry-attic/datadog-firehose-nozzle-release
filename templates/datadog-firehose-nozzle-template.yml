@@ -32,7 +32,6 @@ resource_pools:
 
 jobs:
 - name: datadog-firehose-nozzle
-  memory_mb: 2048
   templates:
     - {name: datadog-firehose-nozzle, release: datadog-firehose-nozzle}
   instances: (( merge ))
