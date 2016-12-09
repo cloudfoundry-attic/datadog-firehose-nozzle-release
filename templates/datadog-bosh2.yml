@@ -1,0 +1,34 @@
+---
+releases:
+  - name: datadog-firehose-nozzle
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/datadog-firehose-nozzle-release
+    version: latest
+
+instance-groups:
+- name: nozzle
+  azs:
+  - z1
+  instances: 1
+  persistent_disk_type: 5GB
+  vm_type: m3.medium
+  stemcell: default
+  networks:
+  - name: private
+  jobs:
+  - name: datadog-firehose-nozzle
+    release: datadog-firehose-nozzle
+    properties:
+      loggregator:
+        traffic_controller_url: "((tc_url))"
+      datadog:
+        api_url: "((datadog_api))"
+        api_key: "((datadog_key))"
+        flush_duration_seconds: 15
+        metric_prefix: datadog.nozzle.
+      uaa:
+        url: "((uaa_url))"
+        client: "((uaa_client))"
+        client_secret: "((uaa_secret))"
+      nozzle:
+        subscription_id: datadog-nozzle
+        deployment: datadog
