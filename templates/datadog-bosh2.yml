@@ -18,7 +18,7 @@ stemcells:
   os: ubuntu-trusty
   version: latest
 
-instance-groups:
+instance_groups:
 - name: nozzle
   azs:
   - z1
