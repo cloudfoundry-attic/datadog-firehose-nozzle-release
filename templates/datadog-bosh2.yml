@@ -44,5 +44,6 @@ instance_groups:
         client: "((uaa_client))"
         client_secret: "((uaa_secret))"
       nozzle:
+        insecure_ssl_skip_verify: false
         subscription_id: datadog-nozzle
         deployment: datadog
