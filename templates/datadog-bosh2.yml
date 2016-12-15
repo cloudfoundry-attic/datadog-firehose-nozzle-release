@@ -1,4 +1,6 @@
 ---
+name: datadog
+
 releases:
   - name: datadog-firehose-nozzle
     url: https://bosh.io/d/github.com/cloudfoundry-incubator/datadog-firehose-nozzle-release
