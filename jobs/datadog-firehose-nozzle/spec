@@ -20,6 +20,9 @@ properties:
   datadog.flush_duration_seconds:
     description: "The duration in seconds between flushes to datadog"
     default: 15
+  datadog.flush_max_bytes:
+    description: "The maximum number of bytes to send per POST request"
+    default: 57671680
   datadog.metric_prefix:
     description: "Text which will be prepended to each metric name submitted to datadog"
     default: "datadog.nozzle."
