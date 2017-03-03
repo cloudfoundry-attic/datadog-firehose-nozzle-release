@@ -24,7 +24,7 @@ instance_groups:
   - z1
   instances: 1
   persistent_disk_type: 5GB
-  vm_type: m3.medium
+  vm_type: default
   stemcell: default
   networks:
   - name: private
