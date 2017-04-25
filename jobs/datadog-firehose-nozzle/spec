@@ -14,7 +14,7 @@ properties:
     description: "Traffic controller URL"
   datadog.api_url:
     description: "The REST API Endpoint for datadog"
-    default: "https://app.datadoghq.com/api/v1/series"
+    default: "https://app.datadoghq.com/api/v1"
   datadog.api_key:
     description: "The datadog API key to use while submitting requests"
   datadog.flush_duration_seconds:
