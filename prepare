@@ -5,6 +5,6 @@
 type glide >/dev/null 2>&1 || (echo "installing Glide" && curl https://glide.sh/get | sh )
 
 
-pushd src/datadog-firehose-nozzle/github.com/DataDog/datadog-firehose-nozzle
+pushd src/datadog-firehose-nozzle/src/github.com/DataDog/datadog-firehose-nozzle
   glide install
 popd
