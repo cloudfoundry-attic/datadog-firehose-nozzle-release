@@ -38,7 +38,7 @@ instance_groups:
         api_url: "((datadog_api))"
         api_key: "((datadog_key))"
         flush_duration_seconds: 15
-        metric_prefix: datadog.nozzle.
+        metric_prefix: cloudfoundry.nozzle.
       uaa:
         url: "((uaa_url))"
         client: "((uaa_client))"

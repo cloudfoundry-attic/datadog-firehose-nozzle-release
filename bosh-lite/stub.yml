@@ -49,7 +49,7 @@ properties:
     api_url: https://app.datadoghq.com/api/v1/series
     api_key: API_KEY
     flush_duration_seconds: 15
-    metric_prefix: bosh.lite.datadog.nozzle.
+    metric_prefix: cloudfoundry.nozzle.
   uaa:
     url: https://uaa.bosh-lite.com
     client: datadog-firehose-nozzle

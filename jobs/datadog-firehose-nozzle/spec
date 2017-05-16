@@ -25,7 +25,7 @@ properties:
     default: 57671680
   datadog.metric_prefix:
     description: "Text which will be prepended to each metric name submitted to datadog"
-    default: "datadog.nozzle."
+    default: "cloudfoundry.nozzle."
   datadog.logrotate.freq_min:
     description: "The frequency in minutes which logrotate will rotate VM logs"
     default: 5

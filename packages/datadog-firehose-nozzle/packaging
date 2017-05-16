@@ -7,5 +7,5 @@ cd datadog-firehose-nozzle
 
 export GOPATH=$PWD
 
-go install github.com/cloudfoundry-incubator/datadog-firehose-nozzle
+go install github.com/DataDog/datadog-firehose-nozzle
 cp -a $PWD/bin/datadog-firehose-nozzle ${BOSH_INSTALL_TARGET}
