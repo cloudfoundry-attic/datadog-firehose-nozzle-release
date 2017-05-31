@@ -1,0 +1,91 @@
+---
+name: datadog
+icon_file: resources/icon.png
+label: Datadog Integration for Cloud Foundry
+description: Send metrics from Cloud Foundry metrics to Datadog!
+
+forms:
+- name: datadog-config
+  label: Datadog Config
+  description: Configure your datadog nozzle!
+  properties:
+  - name: api_key
+    type: string
+    label: Datadog API Key
+    description: Your Datadog API Key
+  - name: api_url
+    type: string
+    label: Datadog API URL
+    description: The Datadog API endpoint to send your metrics to
+    default: https://app.datadoghq.com/api/v1/series
+    optional: true
+  - name: metric_prefix
+    type: string
+    label: string
+    description: The
+    default: cloudfoundry.nozzle.
+    optional: true
+
+- name: cf-config
+  label: Cloud Foundry Settings
+  description: Cloud Foundry connection details
+  markdown: |
+    On deployments with runtimes 1.8.9/1.7.29 and above,
+    the built in user `datadog-firehose-nozzle` will be used when no user is specified.
+
+    API user is **required** for earlier versions of the Elastic Runtimes.
+    Failing to specify the API user on versions without `splunk-firehose` will result in:
+
+    ```
+    unknown property "splunk_firehose_credentials"...
+    ```
+
+    See the docs for detailed instructions on creating a user.
+  properties:
+  - name: insecure_ssl_skip_verify
+    type: boolean
+    label: Skip SSL validation
+    default: false
+    description: Skip SSL validation (to allow things like self-signed certs). Do not set to true in production.
+  - name: api_user
+    type: string
+    label: API user
+    description: Nozzle user (a user having both "cloud_controller.admin_read_only" and "doppler.firehose")
+    optional: true
+  - name: api_password
+    type: secret
+    label: API password
+    description: Password for API user
+    optional: true
+  - name: firehose_subscription_id
+    type: string
+    label: Firehose subscription id
+    default: datadog-firehose-subscription-id
+    description: Subscription id unique to nozzle; firehose balances across socket connections having same id.
+
+packages:
+- name: datadog-firehose-nozzle-release
+  type: bosh-release
+  manifest:
+    path: resources/datadog-firehose-nozzle-release-{{version}}.tgz
+    jobs:
+      - name: datadog-firehose-nozzle
+        templates:
+        - name: datadog-firehose-nozzle
+          release: datadog-firehose-nozzle
+        dynamic_id: 1
+        instances: 1
+        properties:
+          datadog:
+            api_key: (( .properties.api_key.value ))
+            api_url: (( .propertiaes.api_url.value ))
+            metric_prefix: (( .properties.metric_prefix.value ))
+          loggregator:
+            traffic_controller_url: https://wss.(( ..cf.cloud_controller.system_domain.value )):443
+          nozzle:
+            insecure_ssl_skip_verify: (( .properties.insecure_ssl_skip_verify.value ))
+            subscription_id: (( .properties.firehose_subscription_id.value ))
+          uaa:
+            client: (( ..cf.uaa.splunk_firehose_credentials.identity ))
+            client_secret: (( ..cf.uaa.splunk_firehose_credentials.password ))
+            url: https://uaa.(( ..cf.cloud_controller.system_domain.value ))
