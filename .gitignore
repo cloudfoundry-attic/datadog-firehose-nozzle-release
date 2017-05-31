@@ -25,3 +25,6 @@ bosh-lite/manifests/*
 bosh-lite/tmp/*
 pkg
 tmp
+
+tile/product/
+tile/release/
