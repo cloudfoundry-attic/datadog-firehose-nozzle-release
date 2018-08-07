@@ -2,6 +2,8 @@
 
 #### This component has been moved to [DataDog/datadog-firehose-nozzle-release](https://github.com/DataDog/datadog-firehose-nozzle-release).
 
+#### The blobstore supporting this release will be **REMOVED**(Sept 2018). Please do not use. 
+
 This is a BOSH release for the datadog-firehose-nozzle, which transports logs
 from [Loggregator](https://github.com/cloudfoundry/loggregator) to [Datadog](https://www.datadoghq.com/).
 
